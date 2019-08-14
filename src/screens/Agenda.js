@@ -1,16 +1,100 @@
-import React, {Component} from 'react'
-import {StyleSheet, Text, View, ImageBackground} from 'react-native'
+import React, { Component } from 'react'
+import {
+    StyleSheet,
+    Text,
+    View,
+    ImageBackground,
+    FlatList
+} from 'react-native'
 import moment from 'moment'
 import 'moment/locale/pt-br'
 import todayImage from '../../assets/imgs/today.jpg'
 import commonStyles from '../commonStyles'
+import Task from '../components/Task'
 
 export default class Agenda extends Component {
-    render(){
-        return(
+    state = {
+        tasks: [
+            {
+                id: Math.random(),
+                desc: 'Comprar o curso de React Native',
+                estimateAt: new Date(),
+                doneAt: new Date()
+            },
+            {
+                id: Math.random(),
+                desc: 'Comprar o curso de React Native',
+                estimateAt: new Date(),
+                doneAt: new Date()
+            },
+            {
+                id: Math.random(),
+                desc: 'Comprar o curso de React Native',
+                estimateAt: new Date(),
+                doneAt: new Date()
+            },
+            {
+                id: Math.random(),
+                desc: 'Comprar o curso de React Native',
+                estimateAt: new Date(),
+                doneAt: new Date()
+            },
+            {
+                id: Math.random(),
+                desc: 'Comprar o curso de React Native',
+                estimateAt: new Date(),
+                doneAt: new Date()
+            },
+            {
+                id: Math.random(),
+                desc: 'Comprar o curso de React Native',
+                estimateAt: new Date(),
+                doneAt: new Date()
+            },
+            {
+                id: Math.random(),
+                desc: 'Comprar o curso de React Native',
+                estimateAt: new Date(),
+                doneAt: new Date()
+            },
+            {
+                id: Math.random(),
+                desc: 'Comprar o curso de React Native',
+                estimateAt: new Date(),
+                doneAt: new Date()
+            },
+            {
+                id: Math.random(),
+                desc: 'Comprar o curso de React Native',
+                estimateAt: new Date(),
+                doneAt: new Date()
+            },
+            {
+                id: Math.random(),
+                desc: 'Comprar o curso de React Native',
+                estimateAt: new Date(),
+                doneAt: new Date()
+            },
+            {
+                id: Math.random(),
+                desc: 'Comprar o curso de React Native',
+                estimateAt: new Date(),
+                doneAt: new Date()
+            },
+            {
+                id: Math.random(),
+                desc: 'Comprar o curso de React Native',
+                estimateAt: new Date(),
+                doneAt: new Date()
+            },
+
+        ]
+    }
+    render() {
+        return (
             <View style={styles.container}>
                 <ImageBackground source={todayImage}
-                style={styles.background}>
+                    style={styles.background}>
                     <View style={styles.titleBar}>
                         <Text style={styles.title}>Hoje</Text>
                         <Text style={styles.subtitle}>
@@ -19,9 +103,9 @@ export default class Agenda extends Component {
                     </View>
                 </ImageBackground>
                 <View style={styles.tasksContainer}>
-                    <Text>Tarefa 1</Text>
-                    <Text>Tarefa 2</Text>
-                    <Text>Tarefa 3</Text>
+                    <FlatList data={this.state.tasks}
+                        keyExtractor={item => `${item.id}`}
+                        renderItem={({ item }) => <Task {...item} />} />
                 </View>
             </View>
         )
