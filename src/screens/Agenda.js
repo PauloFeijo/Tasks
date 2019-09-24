@@ -7,7 +7,7 @@ import {
     FlatList,
     TouchableOpacity,
     Platform,
-    Alert  
+    AsyncStorage  
 } from 'react-native'
 import moment from 'moment'
 import 'moment/locale/pt-br'
@@ -53,6 +53,7 @@ export default class Agenda extends Component {
             visibleTasks = this.state.tasks.filter(pending)
         }
         this.setState({ visibleTasks })
+        AsyncStorage.setItem('tasks', JSON.stringify(this.state.tasks))
     }
 
     toggleFilter = () => {
@@ -60,8 +61,10 @@ export default class Agenda extends Component {
             this.filterTasks)
     }
 
-    componentDidMount = () => {
-        this.filterTasks()
+    componentDidMount = async () => {
+        const data = await AsyncStorage.getItem('tasks')
+        const tasks = JSON.parse(data) || []
+        this.setState({tasks}, this.filterTasks)
     }
 
     toggleTask = id => {
