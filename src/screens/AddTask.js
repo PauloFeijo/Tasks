@@ -22,7 +22,7 @@ export default class AddTask extends Component {
         this.state = this.getInitialState()
     }
 
-    getInitialState = () {
+    getInitialState = () => {
         return {
             desc: '',
             date: new Date()
