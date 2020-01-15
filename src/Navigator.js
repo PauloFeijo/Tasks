@@ -1,6 +1,6 @@
 import React from 'react'
 import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import { createSwitchNavigator } from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import Menu from './screens/Menu'
 import AuthOrApp from './screens/AuthOrApp'
@@ -75,10 +75,10 @@ const MainRoutes = {
     }
 }
 
-const RootStack = createStackNavigator(MainRoutes, {
-    initialRouteName: 'Loading'
-})
-
-const Navigator = createAppContainer(RootStack);
+const Navigator = createAppContainer(
+    createSwitchNavigator(MainRoutes, {
+        initialRouteName: 'Loading'
+    })
+)
 
 export default Navigator
